@@ -7,6 +7,9 @@ public class FilePartReaderTester {
 	public static void main(String[] args) throws IOException {
 		FilePartReader fpr = new FilePartReader("src/junit_test/daninak.txt", 1, 4);
 		fpr.readLines();
+		FileWordAnalyzer fwa = new FileWordAnalyzer(fpr);
+		fwa.wordsByABC();
+		fwa.wordsContainingSubString("u");
 
 	}
 

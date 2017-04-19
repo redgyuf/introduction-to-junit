@@ -24,20 +24,19 @@ public class FilePartReader {
 	private String read() throws IOException {
 		return new String(Files.readAllBytes(Paths.get(filePath)));
 	}
-	
-	public String readLines() throws IOException{
-		String result = null;
+
+	public String readLines() throws IOException {
+		String result = "";
 		String input = read();
-		String[] inputLines = input.split("\n");		
-		
+		String[] inputLines = input.split("\n");
+
 		for (int i = 0; i < inputLines.length; i++) {
-			if(i >= fromLine && i <= toLine){
-				result += inputLines[i];
-				System.out.println(inputLines[i]);
+			if (i >= fromLine && i <= toLine) {
+				result += inputLines[i] + " ";
 			}
-		}		
+		}
 		return result;
-		
+
 	}
 
 }
