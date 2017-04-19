@@ -32,7 +32,7 @@ public class FilePartReader {
 
 		for (int i = 0; i < inputLines.length; i++) {
 			if (i >= fromLine && i <= toLine) {
-				result += inputLines[i] + " ";
+				result += inputLines[i].trim() + " ";
 			}
 		}
 		return result;
