@@ -3,6 +3,9 @@ package junit_test;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.concurrent.SynchronousQueue;
 
 public class FilePartReader {
 
@@ -19,23 +22,22 @@ public class FilePartReader {
 	}
 
 	private String read() throws IOException {
-		String content = null;
-		File file = new File(filePath); // for ex foo.txt
-		FileReader reader = null;
-		try {
-			reader = new FileReader(file);
-			char[] chars = new char[(int) file.length()];
-			reader.read(chars);
-			content = new String(chars);
-			reader.close();
-		} finally {
-			if (reader != null) {
-				reader.close();
-			}
-		}
-		return content;
+		return new String(Files.readAllBytes(Paths.get(filePath)));
 	}
 	
-	
+	public String readLines() throws IOException{
+		String result = null;
+		String input = read();
+		String[] inputLines = input.split("\n");		
+		
+		for (int i = 0; i < inputLines.length; i++) {
+			if(i >= fromLine && i <= toLine){
+				result += inputLines[i];
+				System.out.println(inputLines[i]);
+			}
+		}		
+		return result;
+		
+	}
 
 }
